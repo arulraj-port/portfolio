@@ -58,6 +58,7 @@ nav a:hover{opacity:1}
 #hero{
   min-height:100vh;
   padding-top:56px;
+  padding-bottom:40px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -72,43 +73,57 @@ canvas{
   inset:0;
 }
 
+/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
   padding:20px;
   max-width:900px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
 .hero-content h2{
   font-size:clamp(36px,8vw,64px);
   letter-spacing:6px;
-  margin-bottom:14px;
+  margin-bottom:12px;
+  animation:glow 4s ease-in-out infinite;
+  text-align:center;
 }
 
 .hero-content p{
   font-size:clamp(15px,4vw,20px);
   opacity:.85;
   line-height:1.6;
+  max-width:720px;
+  text-align:center;
 }
 
 .line{
   width:120px;
   height:2px;
-  margin:18px auto 24px;
+  margin:14px auto 22px;
   background:linear-gradient(90deg,transparent,#ff3b3b,transparent);
 }
 
-/* ===== STATUS CARD ===== */
+/* ===== STATUS BAR ===== */
 .status{
-  margin-top:30px;
+  position:absolute;
+  bottom:18px;
+  z-index:2;
   display:flex;
-  gap:12px;
-  padding:14px 18px;
-  max-width:92%;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:14px 22px;
+  width:min(820px,92%);
   border-radius:22px;
   background:rgba(255,255,255,.08);
   backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,.2);
+  animation:floatUp .9s ease;
 }
 
 .dot{
@@ -121,15 +136,10 @@ canvas{
   flex-shrink:0;
 }
 
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.5)}
-  100%{transform:scale(1)}
-}
-
 .status span{
   font-size:clamp(13px,3.5vw,16px);
   line-height:1.5;
+  text-align:center;
 }
 
 /* ===== SECTIONS ===== */
@@ -147,6 +157,14 @@ section{
   background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.02));
   backdrop-filter:blur(24px);
   border:1px solid rgba(255,255,255,.25);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s ease;
+}
+
+.card.show{
+  opacity:1;
+  transform:none;
 }
 
 .title{
@@ -154,6 +172,7 @@ section{
   font-size:clamp(30px,6vw,42px);
   letter-spacing:6px;
   margin-bottom:18px;
+  animation:glow 4s ease-in-out infinite;
 }
 
 /* ===== SKILLS ===== */
@@ -204,6 +223,42 @@ section{
   color:#fff;
 }
 
+/* ===== ANIMATIONS ===== */
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.5)}
+  100%{transform:scale(1)}
+}
+
+@keyframes glow{
+  0%{text-shadow:0 0 8px rgba(255,255,255,.3)}
+  50%{text-shadow:0 0 26px rgba(255,255,255,.9)}
+  100%{text-shadow:0 0 8px rgba(255,255,255,.3)}
+}
+
+@keyframes floatUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:none}
+}
+
+/* Desktop hover only */
+@media (hover:hover){
+  .card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 60px rgba(255,255,255,.5);
+  }
+
+  .skill:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 28px rgba(255,255,255,.5);
+  }
+
+  .icons a:hover{
+    transform:scale(1.4);
+    text-shadow:0 0 30px #fff;
+  }
+}
+
 footer{
   padding:26px;
   text-align:center;
@@ -235,13 +290,13 @@ footer{
       First-year B.Tech student in Artificial Intelligence & Data Science,
       focused on building strong software engineering foundations.
     </p>
+  </div>
 
-    <div class="status">
-      <div class="dot"></div>
-      <span>
-        Learning Python & DSA, building projects, and actively seeking SWE internships.
-      </span>
-    </div>
+  <div class="status">
+    <div class="dot"></div>
+    <span>
+      <b>Currently,</b> learning Python, building projects, and actively seeking SWE internships.
+    </span>
   </div>
 </section>
 
@@ -251,8 +306,6 @@ footer{
     <div class="line"></div>
     <div class="skills">
       <div class="skill">Python</div>
-      <div class="skill">DSA</div>
-      <div class="skill">HTML & CSS</div>
       <div class="skill">Video Editing</div>
       <div class="skill">Canva Design</div>
     </div>
@@ -268,13 +321,13 @@ footer{
         <h3>College</h3>
         <p><b>Karpagam Academy of Higher Education</b></p>
         <p>B.Tech AI & DS</p>
-        <p class="green">First Year</p>
+        <p class="green">Pursuing First Year</p>
       </div>
       <div class="edu-box">
         <h3>School</h3>
         <p><b>Adharsh Vidhyalaya MHSS</b></p>
         <p>Higher Secondary</p>
-        <p class="green">83.3%</p>
+        <p class="green">Got 83.3%</p>
       </div>
     </div>
   </div>
@@ -333,11 +386,21 @@ function animate(){
 }
 animate();
 
+/* SCROLL REVEAL */
+const cards=document.querySelectorAll(".card");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("show");
+  });
+},{threshold:.2});
+
+cards.forEach(c=>observer.observe(c));
 window.addEventListener("resize",resize);
 </script>
 
 </body>
 </html>
+
 
 
 
