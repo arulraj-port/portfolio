@@ -39,11 +39,7 @@ header{
   z-index:1000;
 }
 
-header h1{
-  font-size:13px;
-  letter-spacing:1px;
-}
-
+header h1{font-size:13px;letter-spacing:1px}
 nav a{
   margin-left:14px;
   font-size:11px;
@@ -51,54 +47,39 @@ nav a{
   text-decoration:none;
   opacity:.7;
 }
-
 nav a:hover{opacity:1}
 
 /* ===== HERO ===== */
 #hero{
   min-height:100vh;
   padding-top:56px;
-  padding-bottom:40px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   position:relative;
-  overflow:hidden;
 }
 
-canvas{
-  position:absolute;
-  inset:0;
-}
+canvas{position:absolute;inset:0}
 
-/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
   padding:20px;
-  max-width:900px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
 }
 
 .hero-content h2{
   font-size:clamp(36px,8vw,64px);
   letter-spacing:6px;
-  margin-bottom:12px;
-  animation:glow 4s ease-in-out infinite;
-  text-align:center;
+  animation:glow 4s infinite;
 }
 
 .hero-content p{
-  font-size:clamp(15px,4vw,20px);
+  font-size:clamp(14px,4vw,20px);
   opacity:.85;
-  line-height:1.6;
   max-width:720px;
-  text-align:center;
+  margin:auto;
 }
 
 .line{
@@ -108,22 +89,19 @@ canvas{
   background:linear-gradient(90deg,transparent,#ff3b3b,transparent);
 }
 
-/* ===== STATUS BAR ===== */
+/* ===== STATUS ===== */
 .status{
   position:absolute;
   bottom:18px;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  padding:14px 22px;
   width:min(820px,92%);
+  padding:14px 22px;
   border-radius:22px;
   background:rgba(255,255,255,.08);
   backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,.2);
-  animation:floatUp .9s ease;
+  display:flex;
+  gap:14px;
+  align-items:center;
 }
 
 .dot{
@@ -133,13 +111,6 @@ canvas{
   background:#ff2a2a;
   box-shadow:0 0 14px #ff2a2a;
   animation:pulse 2s infinite;
-  flex-shrink:0;
-}
-
-.status span{
-  font-size:clamp(13px,3.5vw,16px);
-  line-height:1.5;
-  text-align:center;
 }
 
 /* ===== SECTIONS ===== */
@@ -161,34 +132,58 @@ section{
   transform:translateY(40px);
   transition:.8s ease;
 }
-
-.card.show{
-  opacity:1;
-  transform:none;
-}
+.card.show{opacity:1;transform:none}
 
 .title{
   text-align:center;
   font-size:clamp(30px,6vw,42px);
   letter-spacing:6px;
   margin-bottom:18px;
-  animation:glow 4s ease-in-out infinite;
+  animation:glow 4s infinite;
 }
 
-/* ===== SKILLS ===== */
+/* ===== SKILLS (PROGRESS BARS) ===== */
 .skills{
   display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:16px;
+  flex-direction:column;
+  gap:18px;
 }
 
-.skill{
-  padding:14px 22px;
-  border-radius:18px;
-  font-size:14px;
+.skill-bar{
   background:rgba(0,0,0,.7);
-  border:1px solid rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:18px;
+  padding:14px;
+}
+
+.skill-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.skill-head i{
+  margin-right:8px;
+  font-size:16px;
+}
+
+.progress{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,.15);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#ff2a2a,#ff6a6a);
+  box-shadow:0 0 18px rgba(255,80,80,.9);
+  animation:fill 2s ease forwards;
 }
 
 /* ===== EDUCATION ===== */
@@ -206,10 +201,7 @@ section{
   text-align:center;
 }
 
-.green{
-  color:#0a7a0a;
-  font-weight:600;
-}
+.green{color:#0a7a0a;font-weight:600}
 
 /* ===== CONTACT ===== */
 .icons{
@@ -217,11 +209,7 @@ section{
   justify-content:center;
   gap:30px;
 }
-
-.icons a{
-  font-size:28px;
-  color:#fff;
-}
+.icons a{font-size:28px;color:#fff}
 
 /* ===== ANIMATIONS ===== */
 @keyframes pulse{
@@ -229,30 +217,19 @@ section{
   50%{transform:scale(1.5)}
   100%{transform:scale(1)}
 }
-
 @keyframes glow{
   0%{text-shadow:0 0 8px rgba(255,255,255,.3)}
   50%{text-shadow:0 0 26px rgba(255,255,255,.9)}
   100%{text-shadow:0 0 8px rgba(255,255,255,.3)}
 }
+@keyframes fill{from{width:0}to{width:var(--level)}}
 
-@keyframes floatUp{
-  from{opacity:0; transform:translateY(20px)}
-  to{opacity:1; transform:none}
-}
-
-/* Desktop hover only */
+/* Hover (desktop only) */
 @media (hover:hover){
   .card:hover{
     transform:translateY(-10px);
     box-shadow:0 0 60px rgba(255,255,255,.5);
   }
-
-  .skill:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 28px rgba(255,255,255,.5);
-  }
-
   .icons a:hover{
     transform:scale(1.4);
     text-shadow:0 0 30px #fff;
@@ -271,94 +248,117 @@ footer{
 <body>
 
 <header>
-  <h1>Arulraj P</h1>
-  <nav>
-    <a href="#hero">HOME</a>
-    <a href="#skills">SKILLS</a>
-    <a href="#education">EDU</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
+<h1>Arulraj P</h1>
+<nav>
+  <a href="#hero">HOME</a>
+  <a href="#skills">SKILLS</a>
+  <a href="#education">EDU</a>
+  <a href="#contact">CONTACT</a>
+</nav>
 </header>
 
 <section id="hero">
-  <canvas id="bg"></canvas>
+<canvas id="bg"></canvas>
+<div class="hero-content">
+<h2>ABOUT ME</h2>
+<div class="line"></div>
+<p>First-year B.Tech student in Artificial Intelligence & Data Science</p>
+</div>
 
-  <div class="hero-content">
-    <h2>ABOUT ME</h2>
-    <div class="line"></div>
-    <p>
-      First-year B.Tech student in Artificial Intelligence & Data Science,
-    </p>
-  </div>
-
-  <div class="status">
-    <div class="dot"></div>
-    <span>
-      <b>Currently learning Python, Data Structures and Algorithms (DSA), and SQL, while actively building practical projects to strengthen problem-solving skills and applied technical expertise.
-    </span>
-  </div>
+<div class="status">
+<div class="dot"></div>
+<span><b>Currently learning Python, DSA and SQL while building real projects.</b></span>
+</div>
 </section>
 
 <section id="skills">
-  <div class="card">
-    <h2 class="title">SKILLS</h2>
-    <div class="line"></div>
-    <div class="skills">
-      <div class="skill">Python</div>
-      <div class="skill">Video Editing</div>
-      <div class="skill">Canva Design</div>
-    </div>
+<div class="card">
+<h2 class="title">SKILLS</h2>
+<div class="line"></div>
+
+<div class="skills">
+  <div class="skill-bar">
+    <div class="skill-head"><span><i class="fab fa-python"></i>Python</span><span>60%</span></div>
+    <div class="progress"><span style="--level:60%"></span></div>
   </div>
+
+  <div class="skill-bar">
+    <div class="skill-head"><span><i class="fas fa-database"></i>SQL</span><span>20%</span></div>
+    <div class="progress"><span style="--level:20%"></span></div>
+  </div>
+
+  <div class="skill-bar">
+    <div class="skill-head"><span><i class="fab fa-html5"></i>HTML</span><span>10%</span></div>
+    <div class="progress"><span style="--level:10%"></span></div>
+  </div>
+
+  <div class="skill-bar">
+    <div class="skill-head"><span><i class="fab fa-css3-alt"></i>CSS</span><span>10%</span></div>
+    <div class="progress"><span style="--level:10%"></span></div>
+  </div>
+
+  <div class="skill-bar">
+    <div class="skill-head"><span><i class="fab fa-js"></i>JavaScript</span><span>10%</span></div>
+    <div class="progress"><span style="--level:10%"></span></div>
+  </div>
+
+  <div class="skill-bar">
+    <div class="skill-head"><span><i class="fab fa-react"></i>React</span><span>10%</span></div>
+    <div class="progress"><span style="--level:10%"></span></div>
+  </div>
+</div>
+</div>
 </section>
 
 <section id="education">
-  <div class="card">
-    <h2 class="title">EDUCATION</h2>
-    <div class="line"></div>
-    <div class="edu">
-      <div class="edu-box">
-        <h3>College</h3>
-        <p><b>Karpagam Academy of Higher Education</b></p>
-        <p>B.Tech AI & DS</p>
-        <p class="green">Pursuing First Year</p>
-      </div>
-      <div class="edu-box">
-        <h3>School</h3>
-        <p><b>Adharsh Vidhyalaya MHSS</b></p>
-        <p>Higher Secondary</p>
-        <p class="green">Got 83.3%</p>
-      </div>
-    </div>
+<div class="card">
+<h2 class="title">EDUCATION</h2>
+<div class="line"></div>
+
+<div class="edu">
+  <div class="edu-box">
+    <h3>College</h3>
+    <p><b>Karpagam Academy of Higher Education</b></p>
+    <p>B.Tech AI & DS</p>
+    <p class="green">Pursuing First Year</p>
   </div>
+
+  <div class="edu-box">
+    <h3>School</h3>
+    <p><b>Adharsh Vidhyalaya MHSS</b></p>
+    <p>Higher Secondary</p>
+    <p class="green">83.3%</p>
+  </div>
+</div>
+</div>
 </section>
 
 <section id="contact">
-  <div class="card">
-    <h2 class="title">CONTACT</h2>
-    <div class="line"></div>
-    <div class="icons">
-      <a href="https://www.linkedin.com/in/arulraj-in/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/arulraj-port" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.instagram.com/arulraj__p/" target="_blank"><i class="fab fa-instagram"></i></a>
-    </div>
-  </div>
+<div class="card">
+<h2 class="title">CONTACT</h2>
+<div class="line"></div>
+<div class="icons">
+<a href="https://www.linkedin.com/in/arulraj-in/" target="_blank"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/arulraj-port" target="_blank"><i class="fab fa-github"></i></a>
+<a href="https://www.instagram.com/arulraj__p/" target="_blank"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
 </section>
 
 <footer>© 2026 Arulraj P</footer>
 
 <script>
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
 
 function resize(){
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
 }
 resize();
 
-const count = innerWidth < 768 ? 60 : 120;
-let dots=[];
-
+const dots=[];
+const count=innerWidth<768?60:120;
 for(let i=0;i<count;i++){
   dots.push({
     x:Math.random()*canvas.width,
@@ -378,33 +378,23 @@ function animate(){
     ctx.fill();
     d.x+=d.dx;
     d.y+=d.dy;
-    if(d.x<0||d.x>canvas.width) d.dx*=-1;
-    if(d.y<0||d.y>canvas.height) d.dy*=-1;
+    if(d.x<0||d.x>canvas.width)d.dx*=-1;
+    if(d.y<0||d.y>canvas.height)d.dy*=-1;
   });
   requestAnimationFrame(animate);
 }
 animate();
 
-/* SCROLL REVEAL */
 const cards=document.querySelectorAll(".card");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add("show");
+    if(e.isIntersecting)e.target.classList.add("show");
   });
 },{threshold:.2});
-
 cards.forEach(c=>observer.observe(c));
+
 window.addEventListener("resize",resize);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
