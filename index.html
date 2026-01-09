@@ -82,13 +82,6 @@ canvas{position:absolute;inset:0}
   margin:auto;
 }
 
-.line{
-  width:120px;
-  height:2px;
-  margin:14px auto 22px;
-  background:linear-gradient(90deg,transparent,#ff3b3b,transparent);
-}
-
 /* ===== STATUS ===== */
 .status{
   position:absolute;
@@ -100,8 +93,8 @@ canvas{position:absolute;inset:0}
   backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,.2);
   display:flex;
-  gap:14px;
   align-items:center;
+  gap:14px;
 }
 
 .dot{
@@ -111,6 +104,7 @@ canvas{position:absolute;inset:0}
   background:#ff2a2a;
   box-shadow:0 0 14px #ff2a2a;
   animation:pulse 2s infinite;
+  flex: 0 0 12px; /* Prevent stretching */
 }
 
 /* ===== SECTIONS ===== */
@@ -224,18 +218,6 @@ section{
 }
 @keyframes fill{from{width:0}to{width:var(--level)}}
 
-/* Hover (desktop only) */
-@media (hover:hover){
-  .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 60px rgba(255,255,255,.5);
-  }
-  .icons a:hover{
-    transform:scale(1.4);
-    text-shadow:0 0 30px #fff;
-  }
-}
-
 footer{
   padding:26px;
   text-align:center;
@@ -248,91 +230,85 @@ footer{
 <body>
 
 <header>
-<h1>Arulraj P</h1>
-<nav>
-  <a href="#hero">HOME</a>
-  <a href="#skills">SKILLS</a>
-  <a href="#education">EDU</a>
-  <a href="#contact">CONTACT</a>
-</nav>
+  <h1>Arulraj P</h1>
+  <nav>
+    <a href="#hero">HOME</a>
+    <a href="#skills">SKILLS</a>
+    <a href="#education">EDU</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
 </header>
 
 <section id="hero">
-<canvas id="bg"></canvas>
-<div class="hero-content">
-<h2>ABOUT ME</h2>
-<div class="line"></div>
-<p>First-year B.Tech student in Artificial Intelligence & Data Science</p>
-</div>
+  <canvas id="bg"></canvas>
+  <div class="hero-content">
+    <h2>ABOUT ME</h2>
+    <div class="line"></div>
+    <p>First-year B.Tech student in Artificial Intelligence & Data Science</p>
+  </div>
 
-<div class="status">
-<div class="dot"></div>
-<span><b>Currently learning Python, SQL, HTML, and CSS with a focus on building strong programming and web development fundamentals.</b></span>
-</div>
+  <div class="status">
+    <div class="dot"></div>
+    <span><b>Currently learning Python, SQL, HTML, and CSS with a focus on building strong programming and web development fundamentals.</b></span>
+  </div>
 </section>
 
 <section id="skills">
-<div class="card">
-<h2 class="title">SKILLS</h2>
-<div class="line"></div>
-
-<div class="skills">
-  <div class="skill-bar">
-    <div class="skill-head"><span><i class="fab fa-python"></i>Python</span><span>60%</span></div>
-    <div class="progress"><span style="--level:60%"></span></div>
+  <div class="card">
+    <h2 class="title">SKILLS</h2>
+    <div class="line"></div>
+    <div class="skills">
+      <div class="skill-bar">
+        <div class="skill-head"><span><i class="fab fa-python"></i>Python</span><span>60%</span></div>
+        <div class="progress"><span style="--level:60%"></span></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-head"><span><i class="fas fa-database"></i>SQL</span><span>20%</span></div>
+        <div class="progress"><span style="--level:20%"></span></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-head"><span><i class="fab fa-html5"></i>HTML</span><span>10%</span></div>
+        <div class="progress"><span style="--level:10%"></span></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-head"><span><i class="fab fa-css3-alt"></i>CSS</span><span>10%</span></div>
+        <div class="progress"><span style="--level:10%"></span></div>
+      </div>
+    </div>
   </div>
-
-  <div class="skill-bar">
-    <div class="skill-head"><span><i class="fas fa-database"></i>SQL</span><span>20%</span></div>
-    <div class="progress"><span style="--level:20%"></span></div>
-  </div>
-
-  <div class="skill-bar">
-    <div class="skill-head"><span><i class="fab fa-html5"></i>HTML</span><span>10%</span></div>
-    <div class="progress"><span style="--level:10%"></span></div>
-  </div>
-
-  <div class="skill-bar">
-    <div class="skill-head"><span><i class="fab fa-css3-alt"></i>CSS</span><span>10%</span></div>
-    <div class="progress"><span style="--level:10%"></span></div>
-  </div>
-</div>
-</div>
 </section>
 
 <section id="education">
-<div class="card">
-<h2 class="title">EDUCATION</h2>
-<div class="line"></div>
-
-<div class="edu">
-  <div class="edu-box">
-    <h3>College</h3>
-    <p><b>Karpagam Academy of Higher Education</b></p>
-    <p>B.Tech AI & DS</p>
-    <p class="green">Pursuing First Year</p>
+  <div class="card">
+    <h2 class="title">EDUCATION</h2>
+    <div class="line"></div>
+    <div class="edu">
+      <div class="edu-box">
+        <h3>College</h3>
+        <p><b>Karpagam Academy of Higher Education</b></p>
+        <p>B.Tech AI & DS</p>
+        <p class="green">Pursuing First Year</p>
+      </div>
+      <div class="edu-box">
+        <h3>School</h3>
+        <p><b>Adharsh Vidhyalaya MHSS</b></p>
+        <p>Higher Secondary</p>
+        <p class="green">83.3%</p>
+      </div>
+    </div>
   </div>
-
-  <div class="edu-box">
-    <h3>School</h3>
-    <p><b>Adharsh Vidhyalaya MHSS</b></p>
-    <p>Higher Secondary</p>
-    <p class="green">83.3%</p>
-  </div>
-</div>
-</div>
 </section>
 
 <section id="contact">
-<div class="card">
-<h2 class="title">CONTACT</h2>
-<div class="line"></div>
-<div class="icons">
-<a href="https://www.linkedin.com/in/arulraj-in/" target="_blank"><i class="fab fa-linkedin"></i></a>
-<a href="https://github.com/arulraj-port" target="_blank"><i class="fab fa-github"></i></a>
-<a href="https://www.instagram.com/arulraj__p/" target="_blank"><i class="fab fa-instagram"></i></a>
-</div>
-</div>
+  <div class="card">
+    <h2 class="title">CONTACT</h2>
+    <div class="line"></div>
+    <div class="icons">
+      <a href="https://www.linkedin.com/in/arulraj-in/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/arulraj-port" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.instagram.com/arulraj__p/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
 </section>
 
 <footer>© 2026 Arulraj P</footer>
@@ -388,5 +364,3 @@ window.addEventListener("resize",resize);
 
 </body>
 </html>
-
-
